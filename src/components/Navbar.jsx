@@ -22,7 +22,7 @@ const Navbar = () => {
     <nav className={`fixed top-0 w-full z-40 transition-all duration-300 ${scrolled ? 'bg-primary/90 backdrop-blur-md py-4 shadow-lg' : 'bg-transparent py-6'}`}>
       <div className="max-w-[1200px] mx-auto px-8 md:px-16 flex justify-between items-center">
         <a href="#" className="font-mono text-xl font-bold tracking-tighter text-textPrimary hover:text-accent transition-colors">
-          MICHEL SILVEIRA
+          {t.nav.logo}
         </a>
 
         {/* Desktop Nav */}

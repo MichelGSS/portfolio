@@ -1,6 +1,7 @@
 export const translations = {
   en: {
     nav: {
+      logo: 'Home',
       links: [
         { name: 'About', href: '#about' },
         { name: 'Skills', href: '#skills' },
@@ -127,6 +128,7 @@ export const translations = {
 
   pt: {
     nav: {
+      logo: 'Início',
       links: [
         { name: 'Sobre', href: '#about' },
         { name: 'Habilidades', href: '#skills' },
