@@ -1,18 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const navLinks = [
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Certifications', href: '#certifications' },
-  { name: 'Contact', href: '#contact' },
-];
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { lang, toggle } = useLanguage();
+  const t = translations[lang];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,12 +26,21 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-8">
-          {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="text-sm font-medium text-textSecondary hover:text-accent transition-colors">
+        <div className="hidden md:flex items-center gap-8">
+          {t.nav.links.map((link) => (
+            <a key={link.href} href={link.href} className="text-sm font-medium text-textSecondary hover:text-accent transition-colors">
               {link.name}
             </a>
           ))}
+          <button
+            onClick={toggle}
+            className="font-mono text-xs text-textSecondary hover:text-accent transition-colors border border-borderDark hover:border-textPrimary px-2 py-1"
+            aria-label="Toggle language"
+          >
+            <span className={lang === 'en' ? 'text-accent' : ''}>EN</span>
+            <span className="mx-1 text-textTertiary">|</span>
+            <span className={lang === 'pt' ? 'text-accent' : ''}>PT</span>
+          </button>
         </div>
 
         {/* Mobile Toggle */}
@@ -53,9 +58,9 @@ const Navbar = () => {
             exit={{ opacity: 0, y: -20 }}
             className="md:hidden absolute top-full left-0 w-full bg-secondary border-b border-borderDark flex flex-col items-center py-6 gap-6"
           >
-            {navLinks.map((link) => (
+            {t.nav.links.map((link) => (
               <a
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-base font-medium text-textPrimary hover:text-accent transition-colors"
@@ -63,6 +68,14 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
+            <button
+              onClick={() => { toggle(); setMobileMenuOpen(false); }}
+              className="font-mono text-sm text-textSecondary hover:text-accent transition-colors border border-borderDark px-3 py-1"
+            >
+              <span className={lang === 'en' ? 'text-accent' : ''}>EN</span>
+              <span className="mx-1 text-textTertiary">|</span>
+              <span className={lang === 'pt' ? 'text-accent' : ''}>PT</span>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

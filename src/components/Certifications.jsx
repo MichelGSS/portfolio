@@ -1,23 +1,23 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GraduationCap, Award, ExternalLink, X } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
-const certs = [
+const certsBase = [
   {
     title: "CS50x: Introduction to Computer Science",
     institution: "Harvard University",
     link: "https://courses.edx.org/certificates/58c2807f5f3a4c19acf91e4f57e10b98",
     icon: <GraduationCap className="text-textTertiary mb-4" size={28} />,
-    description: "Harvard University's rigorous, fast-paced introduction to computer science and programming. The curriculum dives deep into algorithmic thinking, data structures, and memory management, utilizing C for low-level foundational concepts before transitioning to higher-level languages like Python, SQL, and JavaScript. Emphasizes problem-solving and software engineering principles over mere syntax.",
-    image: `${import.meta.env.BASE_URL}CS50 Introduction to Computer Science.png`
+    image: `${import.meta.env.BASE_URL}CS50 Introduction to Computer Science.png`,
   },
   {
     title: "Introduction to Web Accessibility",
     institution: "W3C (via edX)",
     link: "https://courses.edx.org/certificates/a8d308adbe134d7e96194bcbc25f6752",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
-    description: "Comprehensive training on the W3C Web Accessibility Initiative (WAI) guidelines, focusing on WCAG standards. Covers practical implementation of ARIA roles, semantic HTML, and assistive technology compatibility to create inclusive, universally accessible digital experiences.",
-    image: `${import.meta.env.BASE_URL}Introduction to Web Accessibility.png`
+    image: `${import.meta.env.BASE_URL}Introduction to Web Accessibility.png`,
   },
   {
     title: "EF SET English Certificate - C1 Advanced",
@@ -25,53 +25,50 @@ const certs = [
     detail: "Score: 68/100",
     link: "https://cert.efset.org/pt/uku3aZ",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
-    description: "Standardized English proficiency assessment certifying a C1 Advanced level according to the Common European Framework of Reference for Languages (CEFR). Demonstrates the ability to understand complex technical documentation, communicate fluently in professional settings, and articulate nuanced ideas.",
-    image: `${import.meta.env.BASE_URL}English certificate EFSET.png`
+    image: `${import.meta.env.BASE_URL}English certificate EFSET.png`,
   },
   {
     title: "Programming for Everybody (Python)",
     institution: "University of Michigan",
     link: "https://coursera.org/verify/1SPRGA9HR9XL",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
-    description: "Foundational programming course from the University of Michigan focused on Python data structures, networked application programming, and database interaction. Covers core programming paradigms including logic flows, iteration, and functional abstractions.",
-    image: `${import.meta.env.BASE_URL}Programming for everybody.png`
+    image: `${import.meta.env.BASE_URL}Programming for everybody.png`,
   },
   {
     title: "Introduction to HTML5",
     institution: "University of Michigan",
     link: "https://coursera.org/verify/XRPQO88MCR75",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
-    description: "In-depth exploration of modern web standards and semantic HTML5 markup. The course focuses on creating accessible, well-structured web documents, understanding the Document Object Model (DOM), and ensuring cross-browser compatibility.",
-    image: `${import.meta.env.BASE_URL}Introduction to HTML5.png`
+    image: `${import.meta.env.BASE_URL}Introduction to HTML5.png`,
   },
   {
     title: "Technical Support Fundamentals",
     institution: "Google",
     link: "https://coursera.org/verify/69OA5U25C48H",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
-    description: "Foundational IT infrastructure and operations certification by Google. Covers essential system administration tasks, networking protocols (TCP/IP, DNS), hardware troubleshooting, operating system management (Linux/Windows), and cybersecurity best practices.",
-    image: `${import.meta.env.BASE_URL}Technical support fundamentals.png`
+    image: `${import.meta.env.BASE_URL}Technical support fundamentals.png`,
   },
   {
     title: "Introduction to Javascript: The Basics",
     institution: "Coursera",
     link: "https://coursera.org/verify/FPAGJD7GWNSS",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
-    description: "Focused curriculum on modern JavaScript (ES6+), covering core language mechanics, asynchronous programming, and DOM manipulation. Designed to build a strong foundation for front-end development and dynamic web applications.",
-    image: `${import.meta.env.BASE_URL}Introduction to javascript.png`
+    image: `${import.meta.env.BASE_URL}Introduction to javascript.png`,
   },
   {
     title: "Principles of Agile Development",
     institution: "Instituto Tecnológico de Aeronáutica - ITA",
     link: "https://coursera.org/verify/MZJVWQVI9ESE",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
-    description: "Advanced exploration of Agile software development methodologies by the Aeronautics Institute of Technology. Covers Scrum, Kanban, iterative delivery cycles, user story mapping, and how to effectively bridge the gap between engineering teams and product stakeholders.",
-    image: `${import.meta.env.BASE_URL}Principles of Agile Development.png`
-  }
+    image: `${import.meta.env.BASE_URL}Principles of Agile Development.png`,
+  },
 ];
 
 const Certifications = () => {
   const [selectedCert, setSelectedCert] = useState(null);
+  const { lang } = useLanguage();
+  const t = translations[lang].certifications;
+  const certs = certsBase.map((cert, i) => ({ ...cert, description: t.descriptions[i] }));
 
   return (
     <section id="certifications" className="py-32 px-8">
@@ -84,7 +81,7 @@ const Certifications = () => {
           className="flex items-center gap-4 mb-16"
         >
           <div className="h-[1px] bg-borderDark flex-1 mr-4 hidden md:block" />
-          <h2 className="text-3xl md:text-4xl text-textPrimary uppercase">Certifications</h2>
+          <h2 className="text-3xl md:text-4xl text-textPrimary uppercase">{t.heading}</h2>
           <div className="h-[1px] bg-borderDark flex-1 ml-4" />
         </motion.div>
 
@@ -126,11 +123,11 @@ const Certifications = () => {
           className="bg-tertiary border border-borderDark p-6 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-3xl mx-auto text-center sm:text-left glow-border"
         >
           <div>
-            <h3 className="text-lg font-bold text-textPrimary">Technologist Degree in Internet Systems</h3>
-            <p className="text-textSecondary text-sm">Centro Universitário IBMR</p>
+            <h3 className="text-lg font-bold text-textPrimary">{t.degreeTitle}</h3>
+            <p className="text-textSecondary text-sm">{t.degreeInstitution}</p>
           </div>
           <div className="font-mono text-accent bg-primary px-3 py-1 border border-borderDark text-sm">
-            In Progress
+            {t.degreeStatus}
           </div>
         </motion.div>
       </div>
@@ -149,11 +146,11 @@ const Certifications = () => {
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              onClick={(e) => e.stopPropagation()} // Prevent clicking inside modal from closing it
+              onClick={(e) => e.stopPropagation()}
               className="bg-secondary border border-borderDark w-[95vw] md:w-[90vw] lg:w-[75vw] p-8 md:p-12 relative flex flex-col md:flex-row gap-8 lg:gap-12 items-center md:items-start shadow-2xl"
             >
               {/* Close Button */}
-              <button 
+              <button
                 onClick={() => setSelectedCert(null)}
                 className="absolute top-4 right-4 text-textTertiary hover:text-accent transition-colors"
               >
@@ -166,17 +163,17 @@ const Certifications = () => {
                   {selectedCert.image ? (
                     <img src={selectedCert.image} alt={selectedCert.title} className="w-full h-full object-contain p-2" />
                   ) : (
-                    <span className="font-mono text-textTertiary uppercase tracking-widest">Certificado</span>
+                    <span className="font-mono text-textTertiary uppercase tracking-widest">{t.certFallback}</span>
                   )}
                 </div>
-                
-                <a 
-                  href={selectedCert.link} 
-                  target="_blank" 
+
+                <a
+                  href={selectedCert.link}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-accent font-mono text-sm hover:underline"
                 >
-                  <ExternalLink size={16} /> View original certificate
+                  <ExternalLink size={16} /> {t.viewCert}
                 </a>
               </div>
 
@@ -188,7 +185,7 @@ const Certifications = () => {
                 <p className="text-textSecondary font-mono text-sm mb-6">
                   {selectedCert.institution}
                 </p>
-                
+
                 <div className="w-8 h-[1px] bg-accent mb-6" />
 
                 <p className="text-textSecondary leading-relaxed text-base">

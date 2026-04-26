@@ -1,7 +1,12 @@
 import { motion } from 'framer-motion';
 import { Linkedin, Github, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const Contact = () => {
+  const { lang } = useLanguage();
+  const t = translations[lang].contact;
+
   return (
     <section id="contact" className="py-32 px-8 relative overflow-hidden bg-secondary">
       {/* Background Pattern */}
@@ -14,9 +19,9 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl text-textPrimary uppercase mb-6 tracking-tight">Let&apos;s Connect</h2>
+          <h2 className="text-4xl md:text-5xl text-textPrimary uppercase mb-6 tracking-tight">{t.heading}</h2>
           <p className="text-textSecondary text-lg md:text-xl max-w-2xl mx-auto mb-16">
-            Open to mid and mid-senior Technical Writer opportunities, remote-first.
+            {t.subtitle}
           </p>
         </motion.div>
 
@@ -60,7 +65,7 @@ const Contact = () => {
             href="mailto:michelfixingit@gmail.com"
             className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-textPrimary text-primary font-bold text-lg hover:bg-white hover:scale-105 transition-all duration-300 group"
           >
-            Send me an email
+            {t.sendEmail}
             <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
           </a>
         </motion.div>
