@@ -9,7 +9,7 @@ const certs = [
     link: "https://courses.edx.org/certificates/58c2807f5f3a4c19acf91e4f57e10b98",
     icon: <GraduationCap className="text-textTertiary mb-4" size={28} />,
     description: "Harvard University's rigorous, fast-paced introduction to computer science and programming. The curriculum dives deep into algorithmic thinking, data structures, and memory management, utilizing C for low-level foundational concepts before transitioning to higher-level languages like Python, SQL, and JavaScript. Emphasizes problem-solving and software engineering principles over mere syntax.",
-    image: "/CS50 Introduction to Computer Science.png"
+    image: `${import.meta.env.BASE_URL}CS50 Introduction to Computer Science.png`
   },
   {
     title: "Introduction to Web Accessibility",
@@ -17,7 +17,7 @@ const certs = [
     link: "https://courses.edx.org/certificates/a8d308adbe134d7e96194bcbc25f6752",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
     description: "Comprehensive training on the W3C Web Accessibility Initiative (WAI) guidelines, focusing on WCAG standards. Covers practical implementation of ARIA roles, semantic HTML, and assistive technology compatibility to create inclusive, universally accessible digital experiences.",
-    image: "/Introduction to Web Accessibility.png"
+    image: `${import.meta.env.BASE_URL}Introduction to Web Accessibility.png`
   },
   {
     title: "EF SET English Certificate - C1 Advanced",
@@ -26,7 +26,7 @@ const certs = [
     link: "https://cert.efset.org/pt/uku3aZ",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
     description: "Standardized English proficiency assessment certifying a C1 Advanced level according to the Common European Framework of Reference for Languages (CEFR). Demonstrates the ability to understand complex technical documentation, communicate fluently in professional settings, and articulate nuanced ideas.",
-    image: "/English certificate EFSET.png"
+    image: `${import.meta.env.BASE_URL}English certificate EFSET.png`
   },
   {
     title: "Programming for Everybody (Python)",
@@ -34,7 +34,7 @@ const certs = [
     link: "https://coursera.org/verify/1SPRGA9HR9XL",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
     description: "Foundational programming course from the University of Michigan focused on Python data structures, networked application programming, and database interaction. Covers core programming paradigms including logic flows, iteration, and functional abstractions.",
-    image: "/Programming for everybody.png"
+    image: `${import.meta.env.BASE_URL}Programming for everybody.png`
   },
   {
     title: "Introduction to HTML5",
@@ -42,7 +42,7 @@ const certs = [
     link: "https://coursera.org/verify/XRPQO88MCR75",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
     description: "In-depth exploration of modern web standards and semantic HTML5 markup. The course focuses on creating accessible, well-structured web documents, understanding the Document Object Model (DOM), and ensuring cross-browser compatibility.",
-    image: "/Introduction to HTML5.png"
+    image: `${import.meta.env.BASE_URL}Introduction to HTML5.png`
   },
   {
     title: "Technical Support Fundamentals",
@@ -50,7 +50,7 @@ const certs = [
     link: "https://coursera.org/verify/69OA5U25C48H",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
     description: "Foundational IT infrastructure and operations certification by Google. Covers essential system administration tasks, networking protocols (TCP/IP, DNS), hardware troubleshooting, operating system management (Linux/Windows), and cybersecurity best practices.",
-    image: "/Technical support fundamentals.png"
+    image: `${import.meta.env.BASE_URL}Technical support fundamentals.png`
   },
   {
     title: "Introduction to Javascript: The Basics",
@@ -58,7 +58,7 @@ const certs = [
     link: "https://coursera.org/verify/FPAGJD7GWNSS",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
     description: "Focused curriculum on modern JavaScript (ES6+), covering core language mechanics, asynchronous programming, and DOM manipulation. Designed to build a strong foundation for front-end development and dynamic web applications.",
-    image: "/Introduction to javascript.png"
+    image: `${import.meta.env.BASE_URL}Introduction to javascript.png`
   },
   {
     title: "Principles of Agile Development",
@@ -66,7 +66,7 @@ const certs = [
     link: "https://coursera.org/verify/MZJVWQVI9ESE",
     icon: <Award className="text-textTertiary mb-4" size={28} />,
     description: "Advanced exploration of Agile software development methodologies by the Aeronautics Institute of Technology. Covers Scrum, Kanban, iterative delivery cycles, user story mapping, and how to effectively bridge the gap between engineering teams and product stakeholders.",
-    image: "/Principles of Agile Development.png"
+    image: `${import.meta.env.BASE_URL}Principles of Agile Development.png`
   }
 ];
 
@@ -176,7 +176,7 @@ const Certifications = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-accent font-mono text-sm hover:underline"
                 >
-                  <ExternalLink size={16} /> Ver certificado original
+                  <ExternalLink size={16} /> View original certificate
                 </a>
               </div>
 
