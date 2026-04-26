@@ -1,3 +1,4 @@
+import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -12,6 +13,7 @@ import GrainOverlay from './components/GrainOverlay';
 
 function App() {
   return (
+    <LanguageProvider>
     <div className="relative min-h-screen cursor-none">
       <GrainOverlay />
       <CustomCursor />
@@ -30,6 +32,7 @@ function App() {
       
       <Footer />
     </div>
+    </LanguageProvider>
   );
 }
 

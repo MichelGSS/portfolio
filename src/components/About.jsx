@@ -1,6 +1,11 @@
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const About = () => {
+  const { lang } = useLanguage();
+  const t = translations[lang].about;
+
   return (
     <section id="about" className="py-32 bg-secondary px-8">
       <div className="max-w-[1200px] mx-auto">
@@ -11,7 +16,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="flex items-center gap-4 mb-16"
         >
-          <h2 className="text-3xl md:text-4xl text-textPrimary uppercase">About</h2>
+          <h2 className="text-3xl md:text-4xl text-textPrimary uppercase">{t.heading}</h2>
           <div className="h-[1px] bg-borderDark flex-1 ml-4" />
         </motion.div>
 
@@ -24,17 +29,13 @@ const About = () => {
             className="md:col-span-7 space-y-6 text-textSecondary text-lg leading-relaxed"
           >
             <p>
-              Technical Writer who codes. <strong className="text-textPrimary font-medium">I design documentation that developers actually want to read</strong>, built to be clear, accurate, and validated against the real system.
+              {t.p1Pre}<strong className="text-textPrimary font-medium">{t.p1Bold}</strong>{t.p1Post}
             </p>
+            <p>{t.p2}</p>
             <p>
-              With 5+ years of experience in the IT industry, I bridge Engineering, Product, and end-users, producing API references, developer guides, integration tutorials, user manuals, and UX copy. My Full Stack background (MERN) means I can read the source, run the endpoints, and ship docs that match what the software truly does, not just what the spec claims.
+              {t.p3Pre}<strong>{t.p3Bold1}</strong>{t.p3Mid}<strong>{t.p3Bold2}</strong>{t.p3Post}
             </p>
-            <p>
-              I structure my documentation following the <strong>Diátaxis framework</strong>, ensuring every piece of content—from tutorials to reference material—serves a specific user need. I also maintain strict clarity, consistency, and a user-centric tone by adhering to the <strong>Microsoft Writing Style Guide</strong>.
-            </p>
-            <p>
-              Before specializing in Technical Writing, I spent several years in IT infrastructure and support, which gave me a hands-on grasp of the full SDLC and a habit of writing procedures people can follow under pressure.
-            </p>
+            <p>{t.p4}</p>
           </motion.div>
 
           <motion.div
@@ -46,15 +47,15 @@ const About = () => {
           >
             <div className="p-6 bg-tertiary border border-borderDark glow-border hover:border-borderHover transition-colors">
               <h3 className="font-mono text-accent text-3xl font-bold mb-1">5+</h3>
-              <p className="text-textTertiary text-sm uppercase tracking-wider">Years in IT</p>
+              <p className="text-textTertiary text-sm uppercase tracking-wider">{t.yearsLabel}</p>
             </div>
             <div className="p-6 bg-tertiary border border-borderDark glow-border hover:border-borderHover transition-colors">
               <h3 className="font-mono text-accent text-3xl font-bold mb-1">C1</h3>
-              <p className="text-textTertiary text-sm uppercase tracking-wider">English (EF SET)</p>
+              <p className="text-textTertiary text-sm uppercase tracking-wider">{t.englishLabel}</p>
             </div>
             <div className="p-6 bg-tertiary border border-borderDark glow-border hover:border-borderHover transition-colors">
               <h3 className="font-mono text-accent text-3xl font-bold mb-1">MERN</h3>
-              <p className="text-textTertiary text-sm uppercase tracking-wider">Full Stack Background</p>
+              <p className="text-textTertiary text-sm uppercase tracking-wider">{t.fullStackLabel}</p>
             </div>
           </motion.div>
         </div>

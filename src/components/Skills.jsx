@@ -1,35 +1,21 @@
 import { motion } from 'framer-motion';
 import { BookOpen, FileJson, GitCommit, MonitorPlay, Globe } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
-const skillCategories = [
-  {
-    title: "Doc Platforms",
-    icon: <MonitorPlay size={18} />,
-    skills: ["Docusaurus", "Redocly", "OpenAPI/Swagger", "Postman"]
-  },
-  {
-    title: "Documentation",
-    icon: <BookOpen size={18} />,
-    skills: ["Technical Writing", "Diátaxis Framework", "Microsoft Style Guide", "API Docs (REST)", "Docs-as-Code", "Information Architecture", "UX Writing", "Knowledge Base", "Developer Experience (DX)"]
-  },
-  {
-    title: "Tools & Workflow",
-    icon: <GitCommit size={18} />,
-    skills: ["Markdown", "Git/GitHub", "JIRA", "Agile (Scrum/Kanban)", "SDLC"]
-  },
-  {
-    title: "Technical Stack",
-    icon: <FileJson size={18} />,
-    skills: ["JavaScript", "Node.js", "React", "Tailwind CSS", "Vite", "Framer Motion", "MongoDB", "Express", "HTML5", "Python", "JSON", "WCAG/WAI-ARIA"]
-  },
-  {
-    title: "Languages",
-    icon: <Globe size={18} />,
-    skills: ["Portuguese - Native", "English - C1 Advanced (EF SET)"]
-  }
+const categoryIcons = [
+  <MonitorPlay size={18} />,
+  <BookOpen size={18} />,
+  <GitCommit size={18} />,
+  <FileJson size={18} />,
+  <Globe size={18} />,
 ];
 
 const Skills = () => {
+  const { lang } = useLanguage();
+  const t = translations[lang].skills;
+  const categories = t.categories.map((cat, i) => ({ ...cat, icon: categoryIcons[i] }));
+
   return (
     <section id="skills" className="py-32 px-8">
       <div className="max-w-[1200px] mx-auto">
@@ -41,12 +27,12 @@ const Skills = () => {
           className="flex items-center gap-4 mb-16"
         >
           <div className="h-[1px] bg-borderDark flex-1 mr-4 hidden md:block" />
-          <h2 className="text-3xl md:text-4xl text-textPrimary uppercase">Skills & Tools</h2>
+          <h2 className="text-3xl md:text-4xl text-textPrimary uppercase">{t.heading}</h2>
           <div className="h-[1px] bg-borderDark flex-1 ml-4" />
         </motion.div>
 
         <div className="space-y-16">
-          {skillCategories.map((category, index) => (
+          {categories.map((category, index) => (
             <div key={index}>
               <h3 className="font-mono text-textTertiary uppercase tracking-widest text-sm mb-6 flex items-center gap-2">
                 {category.icon} {category.title}
