@@ -44,7 +44,7 @@ const CustomCursor = () => {
           y: mousePosition.y - 4,
           opacity: isHovering ? 0 : 1,
         }}
-        transition={{ type: "tween", ease: "backOut", duration: 0.1 }}
+        transition={{ type: "tween", ease: "backOut", duration: 0.05 }}
       />
       
       {/* Trailing Ring */}
@@ -56,7 +56,7 @@ const CustomCursor = () => {
           scale: isHovering ? 1.5 : 1,
           backgroundColor: isHovering ? "rgba(255,255,255,1)" : "rgba(255,255,255,0)"
         }}
-        transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.5 }}
+        transition={{ type: "spring", stiffness: 250, damping: 20, mass: 0.3 }}
       />
     </>
   );
