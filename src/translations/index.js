@@ -101,6 +101,7 @@ export const translations = {
     certifications: {
       heading: "Certifications",
       viewCert: "View original certificate",
+      viewDetails: "View details",
       certFallback: "Certificate",
       degreeTitle: "Technologist Degree in Internet Systems",
       degreeInstitution: "Centro Universitário IBMR",
@@ -228,6 +229,7 @@ export const translations = {
     certifications: {
       heading: "Certificações",
       viewCert: "Ver certificado original",
+      viewDetails: "Ver detalhes",
       certFallback: "Certificado",
       degreeTitle: "Tecnólogo em Sistemas para Internet",
       degreeInstitution: "Centro Universitário IBMR",

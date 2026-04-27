@@ -95,20 +95,29 @@ const Certifications = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-secondary p-6 border border-borderDark hover:border-textPrimary hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all duration-300 flex flex-col h-full group cursor-pointer"
+              className="bg-secondary p-6 border border-borderDark hover:border-accent/50 hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(var(--accent-rgb),0.1)] transition-all duration-300 flex flex-col h-full group cursor-pointer relative overflow-hidden"
             >
-              <div className="flex justify-between items-start">
+              <div className="flex justify-between items-start mb-4">
                 {cert.icon}
-                <ExternalLink size={18} className="text-textTertiary opacity-0 group-hover:opacity-100 group-hover:text-accent transition-all duration-300" />
+                <div className="p-2 bg-tertiary rounded-full opacity-40 group-hover:opacity-100 group-hover:text-accent transition-all duration-300">
+                  <ExternalLink size={16} />
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-textPrimary mb-2 leading-tight flex-1 group-hover:text-accent transition-colors">{cert.title}</h3>
-              <div className="mt-auto">
-                <p className="text-textSecondary text-sm mb-1">{cert.institution}</p>
-                {cert.detail && (
-                  <div className="flex justify-between items-center text-xs font-mono text-textTertiary mt-2">
-                    <span>{cert.detail}</span>
-                  </div>
-                )}
+              
+              <h3 className="text-lg font-bold text-textPrimary mb-4 leading-tight flex-1 group-hover:text-accent transition-colors">
+                {cert.title}
+              </h3>
+
+              <div className="mt-auto pt-4 border-t border-borderDark/50 flex justify-between items-end">
+                <div>
+                  <p className="text-textSecondary text-xs uppercase tracking-wider mb-1">{cert.institution}</p>
+                  {cert.detail && (
+                    <span className="text-[10px] font-mono text-textTertiary">{cert.detail}</span>
+                  )}
+                </div>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                  {t.viewDetails} →
+                </span>
               </div>
             </motion.div>
           ))}
