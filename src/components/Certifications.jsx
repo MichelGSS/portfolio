@@ -108,16 +108,14 @@ const Certifications = () => {
                 {cert.title}
               </h3>
 
-              <div className="mt-auto pt-4 border-t border-borderDark/50 flex justify-between items-end">
-                <div>
-                  <p className="text-textSecondary text-xs uppercase tracking-wider mb-1">{cert.institution}</p>
-                  {cert.detail && (
-                    <span className="text-[10px] font-mono text-textTertiary">{cert.detail}</span>
-                  )}
-                </div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+              <div className="mt-auto pt-4 border-t border-borderDark/50">
+                <p className="text-textSecondary text-xs uppercase tracking-wider truncate">{cert.institution}</p>
+                {cert.detail && (
+                  <p className="text-[10px] font-mono text-textTertiary mt-1">{cert.detail}</p>
+                )}
+                <p className="text-[10px] font-mono uppercase tracking-widest text-accent mt-2 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
                   {t.viewDetails} →
-                </span>
+                </p>
               </div>
             </motion.div>
           ))}
