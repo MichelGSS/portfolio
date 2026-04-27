@@ -104,7 +104,7 @@ export const translations = {
       certFallback: "Certificate",
       degreeTitle: "Technologist Degree in Internet Systems",
       degreeInstitution: "Centro Universitário IBMR",
-      degreeStatus: "In Progress",
+      degreeStatus: "Completed 2026",
       descriptions: [
         "Harvard University's rigorous, fast-paced introduction to computer science and programming. The curriculum dives deep into algorithmic thinking, data structures, and memory management, utilizing C for low-level foundational concepts before transitioning to higher-level languages like Python, SQL, and JavaScript. Emphasizes problem-solving and software engineering principles over mere syntax.",
         "Comprehensive training on the W3C Web Accessibility Initiative (WAI) guidelines, focusing on WCAG standards. Covers practical implementation of ARIA roles, semantic HTML, and assistive technology compatibility to create inclusive, universally accessible digital experiences.",
@@ -231,7 +231,7 @@ export const translations = {
       certFallback: "Certificado",
       degreeTitle: "Tecnólogo em Sistemas para Internet",
       degreeInstitution: "Centro Universitário IBMR",
-      degreeStatus: "Em Andamento",
+      degreeStatus: "Concluído em 2026",
       descriptions: [
         "Introdução rigorosa e acelerada à ciência da computação e programação pela Harvard University. O currículo mergulha fundo em pensamento algorítmico, estruturas de dados e gerenciamento de memória, utilizando C para conceitos fundamentais de baixo nível antes de transicionar para linguagens de mais alto nível como Python, SQL e JavaScript. Enfatiza resolução de problemas e princípios de engenharia de software.",
         "Treinamento abrangente sobre as diretrizes da Web Accessibility Initiative (WAI) do W3C, com foco nos padrões WCAG. Cobre a implementação prática de papéis ARIA, HTML semântico e compatibilidade com tecnologias assistivas para criar experiências digitais inclusivas e universalmente acessíveis.",
