@@ -7,12 +7,13 @@ export const translations = {
         { name: 'Skills', href: '#skills' },
         { name: 'Experience', href: '#experience' },
         { name: 'Certifications', href: '#certifications' },
+        { name: 'Samples', href: '#samples' },
         { name: 'Contact', href: '#contact' },
       ],
     },
     hero: {
       greeting: "Hello, I'm",
-      typingText: "Technical Writer who codes.",
+      typingText: "Technical Writer & Developer",
       tagline: "I design documentation that developers actually want to read.",
       viewWork: "View my work",
       getInTouch: "Get in touch",
@@ -115,6 +116,18 @@ export const translations = {
         "Foundational IT infrastructure and operations certification by Google. Covers essential system administration tasks, networking protocols (TCP/IP, DNS), hardware troubleshooting, operating system management (Linux/Windows), and cybersecurity best practices.",
         "Focused curriculum on modern JavaScript (ES6+), covering core language mechanics, asynchronous programming, and DOM manipulation. Designed to build a strong foundation for front-end development and dynamic web applications.",
         "Advanced exploration of Agile software development methodologies by the Aeronautics Institute of Technology. Covers Scrum, Kanban, iterative delivery cycles, user story mapping, and how to effectively bridge the gap between engineering teams and product stakeholders.",
+        "Comprehensive specialization covering writing and editing fundamentals. Focuses on crafting clear, concise, and effective prose for professional communication, with emphasis on grammar, style, structure, and revision techniques tailored for technical and business contexts.",
+      ],
+    },
+    samples: {
+      heading: "Samples",
+      viewProject: "View project",
+      projects: [
+        {
+          title: "OpenWeather API Documentation",
+          description: "A production-grade REST API documentation site for the OpenWeather platform, built with Docusaurus. Features endpoint references, authentication guides, interactive code samples, and a clean information architecture following the Diátaxis framework. Demonstrates docs-as-code workflow, versioning, and developer experience (DX) design.",
+          link: "https://michelgss.github.io/openweather-docs/",
+        },
       ],
     },
     contact: {
@@ -135,12 +148,13 @@ export const translations = {
         { name: 'Habilidades', href: '#skills' },
         { name: 'Experiência', href: '#experience' },
         { name: 'Certificações', href: '#certifications' },
+        { name: 'Amostras', href: '#samples' },
         { name: 'Contato', href: '#contact' },
       ],
     },
     hero: {
       greeting: "Olá, eu sou",
-      typingText: "Technical Writer que programa.",
+      typingText: "Technical Writer & Developer",
       tagline: "Desenvolvo documentação que desenvolvedores realmente querem ler.",
       viewWork: "Ver meu trabalho",
       getInTouch: "Entre em contato",
@@ -243,6 +257,18 @@ export const translations = {
         "Certificação de infraestrutura e operações de TI pelo Google. Cobre tarefas essenciais de administração de sistemas, protocolos de rede (TCP/IP, DNS), solução de problemas de hardware, gerenciamento de sistemas operacionais (Linux/Windows) e boas práticas de cibersegurança.",
         "Currículo focado em JavaScript moderno (ES6+), cobrindo mecânicas fundamentais da linguagem, programação assíncrona e manipulação do DOM. Projetado para construir uma base sólida para desenvolvimento front-end e aplicações web dinâmicas.",
         "Exploração avançada das metodologias de desenvolvimento ágil de software pelo Instituto Tecnológico de Aeronáutica. Cobre Scrum, Kanban, ciclos de entrega iterativa, mapeamento de histórias de usuário e como fazer a ponte efetiva entre equipes de engenharia e stakeholders de produto.",
+        "Especialização abrangente cobrindo fundamentos de escrita e edição. Foca na criação de prosa clara, concisa e eficaz para comunicação profissional, com ênfase em gramática, estilo, estrutura e técnicas de revisão voltadas para contextos técnicos e empresariais.",
+      ],
+    },
+    samples: {
+      heading: "Amostras",
+      viewProject: "Ver projeto",
+      projects: [
+        {
+          title: "Documentação da API OpenWeather",
+          description: "Site de documentação de API REST para a plataforma OpenWeather, construído com Docusaurus. Inclui referências de endpoints, guias de autenticação, exemplos de código interativos e uma arquitetura de informação limpa seguindo o framework Diátaxis. Demonstra fluxo docs-as-code, versionamento e design de Developer Experience (DX).",
+          link: "https://michelgss.github.io/openweather-docs/",
+        },
       ],
     },
     contact: {

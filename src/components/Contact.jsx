@@ -20,7 +20,7 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl text-textPrimary uppercase mb-6 tracking-tight">{t.heading}</h2>
-          <p className="text-textSecondary text-lg md:text-xl max-w-2xl mx-auto mb-16">
+          <p className="text-textSecondary text-lg md:text-xl max-w-2xl mx-auto mb-16 hyphens-none">
             {t.subtitle}
           </p>
         </motion.div>

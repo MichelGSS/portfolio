@@ -5,6 +5,7 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Certifications from './components/Certifications';
+import Samples from './components/Samples';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
@@ -27,6 +28,7 @@ function App() {
         <Skills />
         <Experience />
         <Certifications />
+        <Samples />
         <Contact />
       </main>
       
