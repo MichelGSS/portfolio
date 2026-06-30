@@ -62,6 +62,13 @@ const certsBase = [
     icon: <Award className="text-textTertiary mb-4" size={28} />,
     image: `${import.meta.env.BASE_URL}Principles of Agile Development.png`,
   },
+  {
+    title: "Good with Words: Writing and Editing",
+    institution: "University of Michigan",
+    link: "https://www.coursera.org/account/accomplishments/specialization/L0BTXW0E195N",
+    icon: <Award className="text-textTertiary mb-4" size={28} />,
+    image: `${import.meta.env.BASE_URL}Good with words - writing and editing.jpg`,
+  },
 ];
 
 const Certifications = () => {
