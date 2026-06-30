@@ -132,7 +132,7 @@ export const translations = {
     },
     contact: {
       heading: "Let's Connect",
-      subtitle: "Open to mid and mid-senior Technical Writer opportunities, remote-first.",
+      subtitle: "Open to mid and mid-senior Technical Writer opportunities, remote\u2011first.",
       sendEmail: "Send me an email",
     },
     footer: {
