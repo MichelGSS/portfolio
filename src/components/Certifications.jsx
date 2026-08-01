@@ -42,13 +42,6 @@ const certsBase = [
     image: `${import.meta.env.BASE_URL}Introduction to HTML5.png`,
   },
   {
-    title: "Technical Support Fundamentals",
-    institution: "Google",
-    link: "https://coursera.org/verify/69OA5U25C48H",
-    icon: <Award className="text-textTertiary mb-4" size={28} />,
-    image: `${import.meta.env.BASE_URL}Technical support fundamentals.png`,
-  },
-  {
     title: "Google IT Support Professional Certificate",
     institution: "Google",
     detail: "6-course program",
