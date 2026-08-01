@@ -49,6 +49,14 @@ const certsBase = [
     image: `${import.meta.env.BASE_URL}Technical support fundamentals.png`,
   },
   {
+    title: "Google IT Support Professional Certificate",
+    institution: "Google",
+    detail: "6-course program",
+    link: "https://coursera.org/verify/professional-cert/66TS8BMCSPKM",
+    icon: <GraduationCap className="text-textTertiary mb-4" size={28} />,
+    image: `${import.meta.env.BASE_URL}Google IT Support.png`,
+  },
+  {
     title: "Introduction to Javascript: The Basics",
     institution: "Coursera",
     link: "https://coursera.org/verify/FPAGJD7GWNSS",
