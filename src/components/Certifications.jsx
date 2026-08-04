@@ -70,6 +70,20 @@ const certsBase = [
     icon: <Award className="text-textTertiary mb-4" size={28} />,
     image: `${import.meta.env.BASE_URL}Good with words - writing and editing.jpg`,
   },
+  {
+    title: "Introduction to Technical Writing",
+    institution: "Board Infinity",
+    link: "https://coursera.org/verify/S74C9HXC9MPV",
+    icon: <Award className="text-textTertiary mb-4" size={28} />,
+    image: `${import.meta.env.BASE_URL}Introduction to Technical Writing.png`,
+  },
+  {
+    title: "Writing Effective Technical Documentation",
+    institution: "Board Infinity",
+    link: "https://coursera.org/verify/ILVS7KNB1FN5",
+    icon: <Award className="text-textTertiary mb-4" size={28} />,
+    image: `${import.meta.env.BASE_URL}Writing Effective Technical Documentation.png`,
+  },
 ];
 
 const Certifications = () => {
