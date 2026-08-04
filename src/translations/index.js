@@ -117,6 +117,8 @@ export const translations = {
         "Focused curriculum on modern JavaScript (ES6+), covering core language mechanics, asynchronous programming, and DOM manipulation. Designed to build a strong foundation for front-end development and dynamic web applications.",
         "Advanced exploration of Agile software development methodologies by the Aeronautics Institute of Technology. Covers Scrum, Kanban, iterative delivery cycles, user story mapping, and how to effectively bridge the gap between engineering teams and product stakeholders.",
         "Comprehensive specialization covering writing and editing fundamentals. Focuses on crafting clear, concise, and effective prose for professional communication, with emphasis on grammar, style, structure, and revision techniques tailored for technical and business contexts.",
+        "Foundations of the technical writing discipline: audience analysis, purpose-driven document planning, and the plain-language principles that make complex information usable. Covers the core deliverable types — user guides, procedures, reference material — along with structuring content for scanability and adapting tone to the reader's expertise level.",
+        "Practical course on producing documentation that holds up in production. Covers information architecture for docs sets, writing step-by-step procedures and API references, using visuals and formatting to reduce cognitive load, and building review and maintenance cycles that keep content accurate as the product evolves.",
       ],
     },
     samples: {
@@ -258,6 +260,8 @@ export const translations = {
         "Currículo focado em JavaScript moderno (ES6+), cobrindo mecânicas fundamentais da linguagem, programação assíncrona e manipulação do DOM. Projetado para construir uma base sólida para desenvolvimento front-end e aplicações web dinâmicas.",
         "Exploração avançada das metodologias de desenvolvimento ágil de software pelo Instituto Tecnológico de Aeronáutica. Cobre Scrum, Kanban, ciclos de entrega iterativa, mapeamento de histórias de usuário e como fazer a ponte efetiva entre equipes de engenharia e stakeholders de produto.",
         "Especialização abrangente cobrindo fundamentos de escrita e edição. Foca na criação de prosa clara, concisa e eficaz para comunicação profissional, com ênfase em gramática, estilo, estrutura e técnicas de revisão voltadas para contextos técnicos e empresariais.",
+        "Fundamentos da disciplina de escrita técnica: análise de público, planejamento de documentos orientado a propósito e os princípios de linguagem simples que tornam informação complexa utilizável. Cobre os principais tipos de entregável — guias de usuário, procedimentos, material de referência — além da estruturação de conteúdo para leitura rápida e da adaptação do tom ao nível de conhecimento do leitor.",
+        "Curso prático sobre produzir documentação que se sustenta em produção. Cobre arquitetura da informação para conjuntos de documentos, escrita de procedimentos passo a passo e referências de API, uso de recursos visuais e formatação para reduzir carga cognitiva, e a construção de ciclos de revisão e manutenção que mantêm o conteúdo preciso conforme o produto evolui.",
       ],
     },
     samples: {
