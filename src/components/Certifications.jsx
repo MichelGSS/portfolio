@@ -90,7 +90,21 @@ const Certifications = () => {
   const [selectedCert, setSelectedCert] = useState(null);
   const { lang } = useLanguage();
   const t = translations[lang].certifications;
-  const certs = certsBase.map((cert, i) => ({ ...cert, description: t.descriptions[i] }));
+  const degreeCert = {
+    title: t.degreeTitle,
+    institution: t.degreeInstitution,
+    detail: t.degreeDetail,
+    description: t.degreeDescription,
+    link: "https://diplomadigital.ibmr.br/",
+    linkLabel: t.verifyDiploma,
+    span: "md:col-span-2",
+    icon: <GraduationCap className="text-accent mb-4" size={28} />,
+    image: `${import.meta.env.BASE_URL}Diploma IBMR.png`,
+  };
+  const certs = [
+    degreeCert,
+    ...certsBase.map((cert, i) => ({ ...cert, description: t.descriptions[i] })),
+  ];
 
   return (
     <section id="certifications" className="py-32 px-8">
@@ -108,7 +122,7 @@ const Certifications = () => {
         </motion.div>
 
         {/* Certificate Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {certs.map((cert, i) => (
             <motion.div
               key={i}
@@ -117,7 +131,7 @@ const Certifications = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-secondary p-6 border border-borderDark hover:border-accent/50 hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(var(--accent-rgb),0.1)] transition-all duration-300 flex flex-col h-full group cursor-pointer relative overflow-hidden"
+              className={`bg-secondary p-6 border border-borderDark hover:border-accent/50 hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(var(--accent-rgb),0.1)] transition-all duration-300 flex flex-col h-full group cursor-pointer relative overflow-hidden ${cert.span || ''}`}
             >
               <div className="flex justify-between items-start mb-4">
                 {cert.icon}
@@ -143,22 +157,6 @@ const Certifications = () => {
           ))}
         </div>
 
-        {/* Custom Progress Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="bg-tertiary border border-borderDark p-6 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-3xl mx-auto text-center sm:text-left glow-border"
-        >
-          <div>
-            <h3 className="text-lg font-bold text-textPrimary">{t.degreeTitle}</h3>
-            <p className="text-textSecondary text-sm">{t.degreeInstitution}</p>
-          </div>
-          <div className="font-mono text-accent bg-primary px-3 py-1 border border-borderDark text-sm">
-            {t.degreeStatus}
-          </div>
-        </motion.div>
       </div>
 
       {/* Modal Overlay */}
@@ -202,7 +200,7 @@ const Certifications = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-accent font-mono text-sm hover:underline"
                 >
-                  <ExternalLink size={16} /> {t.viewCert}
+                  <ExternalLink size={16} /> {selectedCert.linkLabel || t.viewCert}
                 </a>
               </div>
 

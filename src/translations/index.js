@@ -102,11 +102,14 @@ export const translations = {
     certifications: {
       heading: "Certifications",
       viewCert: "View original certificate",
+      verifyDiploma: "Verify diploma",
       viewDetails: "View details",
       certFallback: "Certificate",
       degreeTitle: "Technologist Degree in Internet Systems",
       degreeInstitution: "Centro Universitário IBMR",
-      degreeStatus: "Completed 2026",
+      degreeDetail: "Validation code: 712.712.4d0d6546fa03",
+      degreeDescription:
+        "Undergraduate technologist degree in Internet Systems from Centro Universitário IBMR, in Rio de Janeiro. Coursework concluded on 4 July 2026, with the degree conferred at the graduation ceremony on 17 July 2026. The program covers the full web stack — front-end and back-end development, databases, networks and infrastructure, software engineering practice, and project management. Recognized by MEC Ordinance nº 920/2025; diploma digitally signed under Ordinance 554/2019/MEC and registered on 25 August 2026.",
       descriptions: [
         "Harvard University's rigorous, fast-paced introduction to computer science and programming. The curriculum dives deep into algorithmic thinking, data structures, and memory management, utilizing C for low-level foundational concepts before transitioning to higher-level languages like Python, SQL, and JavaScript. Emphasizes problem-solving and software engineering principles over mere syntax.",
         "Comprehensive training on the W3C Web Accessibility Initiative (WAI) guidelines, focusing on WCAG standards. Covers practical implementation of ARIA roles, semantic HTML, and assistive technology compatibility to create inclusive, universally accessible digital experiences.",
@@ -245,11 +248,14 @@ export const translations = {
     certifications: {
       heading: "Certificações",
       viewCert: "Ver certificado original",
+      verifyDiploma: "Verificar diploma",
       viewDetails: "Ver detalhes",
       certFallback: "Certificado",
       degreeTitle: "Tecnólogo em Sistemas para Internet",
       degreeInstitution: "Centro Universitário IBMR",
-      degreeStatus: "Concluído em 2026",
+      degreeDetail: "Código de validação: 712.712.4d0d6546fa03",
+      degreeDescription:
+        "Graduação em Tecnologia em Sistemas para Internet pelo Centro Universitário IBMR, no Rio de Janeiro. Curso concluído em 4 de julho de 2026, com colação de grau em 17 de julho de 2026. O programa cobre toda a stack web — desenvolvimento front-end e back-end, bancos de dados, redes e infraestrutura, engenharia de software e gestão de projetos. Curso reconhecido pela Portaria nº 920/2025 do MEC; diploma assinado digitalmente segundo a Portaria 554/2019/MEC e registrado em 25 de agosto de 2026.",
       descriptions: [
         "Introdução rigorosa e acelerada à ciência da computação e programação pela Harvard University. O currículo mergulha fundo em pensamento algorítmico, estruturas de dados e gerenciamento de memória, utilizando C para conceitos fundamentais de baixo nível antes de transicionar para linguagens de mais alto nível como Python, SQL e JavaScript. Enfatiza resolução de problemas e princípios de engenharia de software.",
         "Treinamento abrangente sobre as diretrizes da Web Accessibility Initiative (WAI) do W3C, com foco nos padrões WCAG. Cobre a implementação prática de papéis ARIA, HTML semântico e compatibilidade com tecnologias assistivas para criar experiências digitais inclusivas e universalmente acessíveis.",
