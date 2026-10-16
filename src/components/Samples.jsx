@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, BookOpen } from 'lucide-react';
+import { ExternalLink, BookOpen, Code2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
@@ -34,7 +34,9 @@ const Samples = () => {
             >
               <div className="flex flex-col md:flex-row gap-8 items-start">
                 <div className="p-4 bg-tertiary border border-borderDark shrink-0">
-                  <BookOpen className="text-accent" size={28} />
+                  {project.type === 'code'
+                    ? <Code2 className="text-accent" size={28} />
+                    : <BookOpen className="text-accent" size={28} />}
                 </div>
 
                 <div className="flex-1">

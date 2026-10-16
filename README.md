@@ -2,7 +2,7 @@
 
 Live at [michelgss.github.io/portfolio](https://michelgss.github.io/portfolio/).
 
-This is my personal site. I'm a technical writer with a full stack background, and the design reflects that mix: dark, terminal-inspired, with editorial typography. It's a single React page with sections for experience, skills, writing samples, and certifications, and all content is available in English and Portuguese through a language toggle.
+This is my personal site. I'm a full stack developer who also writes technical documentation, and the design reflects that mix: dark, terminal-inspired, with editorial typography. It's a single React page with sections for experience, skills, projects, and certifications, and all content is available in English and Portuguese through a language toggle.
 
 Built with React 18, Vite, Tailwind CSS, and Framer Motion. Icons come from Lucide.
 

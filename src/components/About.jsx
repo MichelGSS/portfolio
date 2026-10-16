@@ -46,7 +46,7 @@ const About = () => {
             className="md:col-span-5 flex flex-col gap-6 justify-center"
           >
             <div className="p-6 bg-tertiary border border-borderDark glow-border hover:border-borderHover transition-colors">
-              <h3 className="font-mono text-accent text-3xl font-bold mb-1">5+</h3>
+              <h3 className="font-mono text-accent text-3xl font-bold mb-1">2018</h3>
               <p className="text-textTertiary text-sm uppercase tracking-wider">{t.yearsLabel}</p>
             </div>
             <div className="p-6 bg-tertiary border border-borderDark glow-border hover:border-borderHover transition-colors">

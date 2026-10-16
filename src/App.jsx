@@ -27,8 +27,8 @@ function App() {
         <About />
         <Skills />
         <Experience />
-        <Certifications />
         <Samples />
+        <Certifications />
         <Contact />
       </main>
       
