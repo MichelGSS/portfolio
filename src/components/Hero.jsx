@@ -85,7 +85,7 @@ const Hero = () => {
           <a href="#contact" className="px-8 py-4 border border-borderDark text-textPrimary hover:border-textPrimary transition-colors">
             {t.hero.getInTouch}
           </a>
-          <a href="resume.pdf" target="_blank" rel="noopener noreferrer" className="px-8 py-4 border border-borderDark text-textPrimary hover:border-textPrimary transition-colors flex items-center gap-2 group">
+          <a href={lang === 'pt' ? 'resume-pt.pdf' : 'resume.pdf'} target="_blank" rel="noopener noreferrer" className="px-8 py-4 border border-borderDark text-textPrimary hover:border-textPrimary transition-colors flex items-center gap-2 group">
             {t.hero.resume} <span className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform">↗</span>
           </a>
         </motion.div>
