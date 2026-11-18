@@ -1,65 +1,94 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 const CustomCursor = () => {
-  const dotRef = useRef(null);
-  const ringRef = useRef(null);
-  const rafRef = useRef(null);
-  const posRef = useRef({ x: 0, y: 0 });
-  const hoverRef = useRef(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+
+  const springConfig = { damping: 26, stiffness: 320, mass: 0.4 };
+  const ringX = useSpring(cursorX, springConfig);
+  const ringY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      posRef.current = { x: e.clientX, y: e.clientY };
-      if (!rafRef.current) {
-        rafRef.current = requestAnimationFrame(update);
-      }
+    const moveCursor = (e) => {
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+      if (!isVisible) setIsVisible(true);
     };
 
     const handleMouseOver = (e) => {
       const target = e.target;
-      const hovering =
-        target.tagName.toLowerCase() === 'a' ||
-        target.tagName.toLowerCase() === 'button' ||
-        target.closest('a') ||
-        target.closest('button');
-      hoverRef.current = hovering;
+      if (
+        target &&
+        target.closest &&
+        target.closest('a, button, [role="button"], input, textarea, select')
+      ) {
+        setIsHovered(true);
+      } else {
+        setIsHovered(false);
+      }
     };
 
-    const update = () => {
-      const { x, y } = posRef.current;
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${x - 4}px, ${y - 4}px)`;
-        dotRef.current.style.opacity = hoverRef.current ? '0' : '1';
-      }
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate(${x - 16}px, ${y - 16}px)`;
-      }
-      rafRef.current = null;
-    };
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('mousemove', moveCursor, { passive: true });
     window.addEventListener('mouseover', handleMouseOver, { passive: true });
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', moveCursor);
       window.removeEventListener('mouseover', handleMouseOver);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, []);
+  }, [cursorX, cursorY, isVisible]);
 
   return (
-    <>
-      <div
-        ref={dotRef}
-        className="hidden md:block fixed top-0 left-0 w-2 h-2 bg-accent rounded-full pointer-events-none z-[100] mix-blend-difference"
-        style={{ willChange: 'transform' }}
+    <div className="hidden md:block pointer-events-none fixed inset-0 z-50 overflow-hidden">
+      {/* Outer Magnetic Spring Ring */}
+      <motion.div
+        style={{
+          x: ringX,
+          y: ringY,
+          translateX: '-50%',
+          translateY: '-50%',
+          borderColor: isHovered
+            ? 'rgba(var(--accent-rgb), 0.75)'
+            : 'rgba(255, 255, 255, 0.22)',
+          backgroundColor: isHovered
+            ? 'rgba(var(--accent-rgb), 0.08)'
+            : 'rgba(255, 255, 255, 0)',
+        }}
+        animate={{
+          width: isHovered ? 48 : 28,
+          height: isHovered ? 48 : 28,
+          opacity: isVisible ? 1 : 0,
+        }}
+        transition={{ duration: 0.18, ease: 'easeOut' }}
+        className="fixed top-0 left-0 rounded-full border backdrop-blur-[1px] transition-colors duration-200"
       />
-      <div
-        ref={ringRef}
-        className="hidden md:block fixed top-0 left-0 w-8 h-8 border border-accent rounded-full pointer-events-none z-[100] mix-blend-difference"
-        style={{ willChange: 'transform', transition: 'transform 0.15s ease-out' }}
+
+      {/* Precision Inner Dot */}
+      <motion.div
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+        animate={{
+          scale: isHovered ? 0.4 : 1,
+          opacity: isVisible ? 0.9 : 0,
+        }}
+        transition={{ duration: 0.12 }}
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-[var(--accent-hex)]"
       />
-    </>
+    </div>
   );
 };
 
