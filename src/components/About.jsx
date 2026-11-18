@@ -93,25 +93,26 @@ const About = () => {
     {
       value: 'MERN + PY',
       label: t.fullStackLabel,
-      sub: 'React, Node, SQL, Python',
+      sub: 'JS, TS, Python, Rust, SQL',
       icon: Cpu,
     },
     {
-      value: '24/7',
+      value: '100',
       label: t.opsLabel,
-      sub: lang === 'pt' ? 'N2 & Automação' : 'Tier 2 & Automation',
+      sub: 'A11y, SEO & Best Practices',
       icon: Shield,
     },
   ];
 
   const dualPills = [
     'MERN Stack',
+    'TypeScript',
     'Python',
-    'Next.js',
+    'Rust (SnapKit)',
+    'Docusaurus 3 (MDX)',
+    'Diátaxis',
     'OpenAPI 3.1',
-    'Docusaurus',
-    'Redocly',
-    'Postman',
+    'Mermaid.js',
     'SQL',
   ];
 

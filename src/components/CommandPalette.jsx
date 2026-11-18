@@ -111,6 +111,36 @@ export const CommandPalette = () => {
         },
       },
       {
+        id: 'act-totalcontrol',
+        group: t.commandPalette.actions,
+        label:
+          lang === 'pt'
+            ? 'Abrir Central de Ajuda Total Control (Produção)'
+            : 'Open Live Total Control Docs Portal',
+        sub: 'docs.totalcontrol.com.br',
+        icon: BookOpen,
+        external: true,
+        action: () => {
+          window.open('https://docs.totalcontrol.com.br/', '_blank', 'noopener,noreferrer');
+          setCommandOpen(false);
+        },
+      },
+      {
+        id: 'act-snapkit',
+        group: t.commandPalette.actions,
+        label:
+          lang === 'pt'
+            ? 'Abrir SnapKit — Captura & OCR em Rust (GitHub)'
+            : 'Open SnapKit — Rust Screen Capture & OCR Tool',
+        sub: 'github.com/MichelGSS/snapkit',
+        icon: Code2,
+        external: true,
+        action: () => {
+          window.open('https://github.com/MichelGSS/snapkit', '_blank', 'noopener,noreferrer');
+          setCommandOpen(false);
+        },
+      },
+      {
         id: 'act-openweather',
         group: t.commandPalette.actions,
         label:

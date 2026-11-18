@@ -15,9 +15,69 @@ import {
   Play,
   FileJson,
   Globe,
+  ShieldCheck,
+  Cpu,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
+
+const TOTALCONTROL_MODULES = {
+  'Vendas & PDV': {
+    path: 'docs/total-on/vendas/',
+    diataxis: ['tutoriais/primeira-venda.mdx', 'guias/fechamento-caixa.mdx', 'referencia/atalhos-pdv.mdx', 'conceitos/fluxo-vendas.mdx'],
+    linter: '0 warnings • MS Style Guide PT-BR ✓',
+    lighthouse: { a11y: 100, bestPractices: 100, seo: 100 },
+  },
+  'Estoque & Fiscal': {
+    path: 'docs/total-on/estoque-fiscal/',
+    diataxis: ['tutoriais/cadastro-produto.mdx', 'guias/emissao-nfe-nfce.mdx', 'referencia/campos-fiscais.mdx', 'conceitos/controle-lote.mdx'],
+    linter: '0 broken links • Mermaid flowchart ✓',
+    lighthouse: { a11y: 100, bestPractices: 100, seo: 100 },
+  },
+  'Financeiro': {
+    path: 'docs/total-on/financeiro/',
+    diataxis: ['tutoriais/contas-pagar-receber.mdx', 'guias/conciliacao-bancaria.mdx', 'referencia/plano-contas.mdx', 'conceitos/DRE-fluxo-caixa.mdx'],
+    linter: '0 orphan pages • Frontmatter 100% ✓',
+    lighthouse: { a11y: 100, bestPractices: 100, seo: 100 },
+  },
+  'Catálogo Digital': {
+    path: 'docs/total-on/catalogo-digital/',
+    diataxis: ['tutoriais/publicar-loja.mdx', 'guias/configurar-entrega.mdx', 'referencia/integracao-whatsapp.mdx', 'conceitos/sincronizacao-erp.mdx'],
+    linter: 'Annotated mock screenshots ✓',
+    lighthouse: { a11y: 100, bestPractices: 100, seo: 100 },
+  },
+};
+
+const SNAPKIT_MODULES = {
+  'Step Recorder': {
+    file: 'src/steps.rs',
+    shortcut: 'Alt + Shift + G',
+    descEn: 'Every mouse click automatically captures a numbered, captioned screenshot ready for step-by-step tutorials.',
+    descPt: 'Cada clique do mouse gera automaticamente uma captura numerada e legendada para tutoriais passo a passo.',
+    stats: 'Auto-numbered badges • Instant guide export',
+  },
+  'Quick Annotation': {
+    file: 'src/editor.rs & src/render.rs',
+    shortcut: 'Alt + Shift + S',
+    descEn: '19 vector tools on canvas: arrows, callouts, numbered steps, spotlight, and pixel blur/redaction for API keys.',
+    descPt: '19 ferramentas vetoriais na tela: setas, textos, passos numerados, spotlight e blur para ocultar chaves de API.',
+    stats: 'tiny-skia vector engine • Non-destructive layers',
+  },
+  'Local Neural OCR': {
+    file: 'src/ocr.rs & src/neural.rs',
+    shortcut: 'Alt + Shift + O',
+    descEn: '100% offline text recognition powered by ONNX Runtime (PaddleOCR) + Tesseract that preserves code indentation.',
+    descPt: 'Reconhecimento de texto 100% offline com ONNX Runtime (PaddleOCR) + Tesseract que preserva a indentação de código.',
+    stats: 'Zero cloud calls • Air-gapped safe',
+  },
+  'Scrolling Capture': {
+    file: 'src/scroll.rs & src/capture.rs',
+    shortcut: 'Alt + Shift + W',
+    descEn: 'Vertical, horizontal, and panoramic capture with motion detection, automatic stitching, and fixed-header handling.',
+    descPt: 'Captura com rolagem vertical, horizontal e panorâmica com detecção de movimento, colagem automática e cabeçalhos fixos.',
+    stats: 'Win32 API + xcap • ~100 MB idle RAM',
+  },
+};
 
 const CITY_PAYLOADS = {
   'Rio de Janeiro': {
@@ -62,130 +122,255 @@ const CITY_PAYLOADS = {
   },
 };
 
-const OPENWEATHER_NODES = {
-  en: [
-    {
-      id: 'openapi',
-      step: '01',
-      label: 'OpenAPI 3.0 Spec',
-      sub: 'Schema & Parameters',
-      detail: 'Validated query parameters (lat, lon, units, appid) and HTTP 200/401/429 response schemas in Postman.',
-    },
-    {
-      id: 'diataxis',
-      step: '02',
-      label: 'Diátaxis 4 Quadrants',
-      sub: 'Information Architecture',
-      detail: 'Structured into Quickstart Tutorials, How-To Guides, REST API Reference, and Architecture Explanations.',
-    },
-    {
-      id: 'docusaurus',
-      step: '03',
-      label: 'Docusaurus MDX',
-      sub: 'Docs-as-Code Authoring',
-      detail: 'Interactive multi-language code tabs (cURL, JavaScript Fetch, Python Requests) with Microsoft Style Guide clarity.',
-    },
-    {
-      id: 'cicd',
-      step: '04',
-      label: 'GitHub Pages CI/CD',
-      sub: 'Automated Deployment',
-      detail: 'Version-controlled Git workflow with automated static production builds and broken-link checking.',
-    },
-  ],
-  pt: [
-    {
-      id: 'openapi',
-      step: '01',
-      label: 'Spec OpenAPI 3.0',
-      sub: 'Schema & Parâmetros',
-      detail: 'Parâmetros de query validados (lat, lon, units, appid) e schemas de resposta HTTP 200/401/429 via Postman.',
-    },
-    {
-      id: 'diataxis',
-      step: '02',
-      label: '4 Quadrantes Diátaxis',
-      sub: 'Arquitetura da Informação',
-      detail: 'Estruturado em Tutoriais Rápidos, Guias Práticos, Referência de API REST e Explicações Arquiteturais.',
-    },
-    {
-      id: 'docusaurus',
-      step: '03',
-      label: 'Docusaurus MDX',
-      sub: 'Autoria Docs-as-Code',
-      detail: 'Abas de código multi-linguagem (cURL, JavaScript Fetch, Python Requests) seguindo o Microsoft Style Guide.',
-    },
-    {
-      id: 'cicd',
-      step: '04',
-      label: 'GitHub Pages CI/CD',
-      sub: 'Deploy Automatizado',
-      detail: 'Fluxo Git versionado com builds estáticos automatizados em produção e verificação de links.',
-    },
-  ],
-};
-
-const PORTFOLIO_NODES = {
-  en: [
-    {
-      id: 'react',
-      step: '01',
-      label: 'React 18 + Vite',
-      sub: 'Modular Component Tree',
-      detail: 'Zero-bloat SPA architecture with instant HMR, semantic HTML5 landmarks, and WAI-ARIA compliant controls.',
-    },
-    {
-      id: 'motion',
-      step: '02',
-      label: 'Framer Motion Physics',
-      sub: '60fps Spring Choreography',
-      detail: 'Scroll-linked laser progress spines, layoutId shared transitions, and tactile magnetic micro-interactions.',
-    },
-    {
-      id: 'i18n',
-      step: '03',
-      label: 'Bilingual i18n Context',
-      sub: 'EN / PT-BR Dictionary',
-      detail: 'Single-source translation store switching all UI copy, code comments, and terminal responses without page reload.',
-    },
-    {
-      id: 'theme',
-      step: '04',
-      label: 'Dynamic Theme Engine',
-      sub: 'CSS Variable Tokens',
-      detail: 'Real-time studio accent switching (--accent-hex & --accent-rgb) synchronized with the ⌘K Command Palette.',
-    },
-  ],
-  pt: [
-    {
-      id: 'react',
-      step: '01',
-      label: 'React 18 + Vite',
-      sub: 'Árvore Modular',
-      detail: 'Arquitetura SPA enxuta com HMR instantâneo, HTML5 semântico e controles acessíveis padrão WAI-ARIA.',
-    },
-    {
-      id: 'motion',
-      step: '02',
-      label: 'Framer Motion Physics',
-      sub: 'Coreografia Spring 60fps',
-      detail: 'Feixes de progresso sincronizados ao scroll, transições layoutId compartilhadas e micro-interações táteis.',
-    },
-    {
-      id: 'i18n',
-      step: '03',
-      label: 'Contexto i18n Bilíngue',
-      sub: 'Dicionário EN / PT-BR',
-      detail: 'Repositório único de traduções alternando textos, comentários de código e terminal em tempo real sem reload.',
-    },
-    {
-      id: 'theme',
-      step: '04',
-      label: 'Motor de Tema Dinâmico',
-      sub: 'Tokens CSS Variables',
-      detail: 'Troca instantânea de cor de destaque (--accent-hex & --accent-rgb) integrada à paleta de comandos ⌘K.',
-    },
-  ],
+const ARCH_NODES_BY_PROJECT = {
+  totalcontrol: {
+    en: [
+      {
+        id: 'diataxis',
+        step: '01',
+        label: 'Diátaxis Architecture',
+        sub: '9 ERP Retail Modules',
+        detail: 'Organized into Tutorials, How-To Guides, Reference, and Concepts across POS, Inventory, Finance, Fiscal, and Online Catalog.',
+      },
+      {
+        id: 'docusaurus',
+        step: '02',
+        label: 'Docusaurus 3.10 + MDX',
+        sub: 'TypeScript & Mermaid',
+        detail: 'Built with Docusaurus 3.10, React 19, Rspack (@docusaurus/faster), local search, and interactive Mermaid flowcharts.',
+      },
+      {
+        id: 'linter',
+        step: '03',
+        label: 'Style & Quality Linter',
+        sub: 'verificar-docs.mjs',
+        detail: 'Automated pre-publish CLI checking Microsoft Writing Style Guide (PT-BR) rules, frontmatter, broken links, and orphan pages.',
+      },
+      {
+        id: 'lighthouse',
+        step: '04',
+        label: 'Lighthouse 100 CI/CD',
+        sub: 'Git/GitHub Continuous Deploy',
+        detail: 'Validated with the engineering team and deployed continuously with 100/100 scores in Accessibility, Best Practices, and SEO.',
+      },
+    ],
+    pt: [
+      {
+        id: 'diataxis',
+        step: '01',
+        label: 'Arquitetura Diátaxis',
+        sub: '9 Módulos do ERP Varejo',
+        detail: 'Organizado em Tutoriais, Guias Práticos, Referência e Conceitos cobrindo Estoque, Financeiro, Fiscal, PDV e Catálogo Digital.',
+      },
+      {
+        id: 'docusaurus',
+        step: '02',
+        label: 'Docusaurus 3.10 + MDX',
+        sub: 'TypeScript & Mermaid',
+        detail: 'Desenvolvido com Docusaurus 3.10, React 19, Rspack (@docusaurus/faster), busca local e diagramas de fluxo Mermaid.',
+      },
+      {
+        id: 'linter',
+        step: '03',
+        label: 'Verificador de Estilo',
+        sub: 'verificar-docs.mjs',
+        detail: 'Script automatizado que valida regras do Microsoft Writing Style Guide (PT-BR), frontmatter, links quebrados e páginas órfãs.',
+      },
+      {
+        id: 'lighthouse',
+        step: '04',
+        label: 'Lighthouse 100 CI/CD',
+        sub: 'Deploy Contínuo Git/GitHub',
+        detail: 'Validado com a equipe de desenvolvimento e publicado via Git CI/CD com nota 100 em Acessibilidade, Boas Práticas e SEO.',
+      },
+    ],
+  },
+  snapkit: {
+    en: [
+      {
+        id: 'capture',
+        step: '01',
+        label: 'Win32 & Scrolling Capture',
+        sub: 'src/capture.rs & scroll.rs',
+        detail: 'Region, window, panoramic, and auto-stitching scrolling capture with live pixel magnifier and fixed-header detection.',
+      },
+      {
+        id: 'editor',
+        step: '02',
+        label: '19-Tool Vector Editor',
+        sub: 'egui + tiny-skia',
+        detail: 'Non-destructive canvas with arrows, numbered steps, callouts, spotlight, and sensitive API key blur/redaction.',
+      },
+      {
+        id: 'ocr',
+        step: '03',
+        label: 'Local Neural OCR',
+        sub: 'ONNX PaddleOCR + Tesseract',
+        detail: '100% offline text recognition engine that preserves code indentation and layout with zero cloud telemetry.',
+      },
+      {
+        id: 'docs',
+        step: '04',
+        label: 'Step Recorder & Diátaxis',
+        sub: 'FFmpeg + Bilingual Docs',
+        detail: 'Click-to-step guide generator, FFmpeg video/GIF encoding, and full EN/PT documentation structured with Diátaxis.',
+      },
+    ],
+    pt: [
+      {
+        id: 'capture',
+        step: '01',
+        label: 'Captura & Rolagem Nativa',
+        sub: 'src/capture.rs & scroll.rs',
+        detail: 'Captura de região, janela, panorâmica e com rolagem automática, lupa de pixels ao vivo e detecção de cabeçalhos fixos.',
+      },
+      {
+        id: 'editor',
+        step: '02',
+        label: 'Editor Vetorial (19 Tools)',
+        sub: 'egui + tiny-skia',
+        detail: 'Edição não-destrutiva com setas, passos numerados, callouts, spotlight e blur para ocultar chaves de API e dados sensíveis.',
+      },
+      {
+        id: 'ocr',
+        step: '03',
+        label: 'OCR Neural 100% Local',
+        sub: 'ONNX PaddleOCR + Tesseract',
+        detail: 'Reconhecimento de texto offline na própria máquina que preserva a indentação de código, sem nuvem e sem telemetria.',
+      },
+      {
+        id: 'docs',
+        step: '04',
+        label: 'Modo Passo a Passo & Docs',
+        sub: 'FFmpeg + Diátaxis EN/PT',
+        detail: 'Gravador onde cada clique vira um passo numerado, gravação de vídeo/GIF com FFmpeg e documentação completa em Diátaxis.',
+      },
+    ],
+  },
+  openweather: {
+    en: [
+      {
+        id: 'openapi',
+        step: '01',
+        label: 'OpenAPI 3.0 Spec',
+        sub: 'Schema & Parameters',
+        detail: 'Validated query parameters (lat, lon, units, appid) and HTTP 200/401/429 response schemas in Postman.',
+      },
+      {
+        id: 'diataxis',
+        step: '02',
+        label: 'Diátaxis 4 Quadrants',
+        sub: 'Information Architecture',
+        detail: 'Structured into Quickstart Tutorials, How-To Guides, REST API Reference, and Architecture Explanations.',
+      },
+      {
+        id: 'docusaurus',
+        step: '03',
+        label: 'Docusaurus MDX',
+        sub: 'Docs-as-Code Authoring',
+        detail: 'Interactive multi-language code tabs (cURL, JavaScript Fetch, Python Requests) with Microsoft Style Guide clarity.',
+      },
+      {
+        id: 'cicd',
+        step: '04',
+        label: 'GitHub Pages CI/CD',
+        sub: 'Automated Deployment',
+        detail: 'Version-controlled Git workflow with automated static production builds and broken-link checking.',
+      },
+    ],
+    pt: [
+      {
+        id: 'openapi',
+        step: '01',
+        label: 'Spec OpenAPI 3.0',
+        sub: 'Schema & Parâmetros',
+        detail: 'Parâmetros de query validados (lat, lon, units, appid) e schemas de resposta HTTP 200/401/429 via Postman.',
+      },
+      {
+        id: 'diataxis',
+        step: '02',
+        label: '4 Quadrantes Diátaxis',
+        sub: 'Arquitetura da Informação',
+        detail: 'Estruturado em Tutoriais Rápidos, Guias Práticos, Referência de API REST e Explicações Arquiteturais.',
+      },
+      {
+        id: 'docusaurus',
+        step: '03',
+        label: 'Docusaurus MDX',
+        sub: 'Autoria Docs-as-Code',
+        detail: 'Abas de código multi-linguagem (cURL, JavaScript Fetch, Python Requests) seguindo o Microsoft Style Guide.',
+      },
+      {
+        id: 'cicd',
+        step: '04',
+        label: 'GitHub Pages CI/CD',
+        sub: 'Deploy Automatizado',
+        detail: 'Fluxo Git versionado com builds estáticos automatizados em produção e verificação de links.',
+      },
+    ],
+  },
+  portfolio: {
+    en: [
+      {
+        id: 'react',
+        step: '01',
+        label: 'React 18 + Vite',
+        sub: 'Modular Component Tree',
+        detail: 'Zero-bloat SPA architecture with instant HMR, semantic HTML5 landmarks, and WAI-ARIA compliant controls.',
+      },
+      {
+        id: 'motion',
+        step: '02',
+        label: 'Framer Motion Physics',
+        sub: '60fps Spring Choreography',
+        detail: 'Scroll-linked laser progress spines, layoutId shared transitions, and tactile magnetic micro-interactions.',
+      },
+      {
+        id: 'i18n',
+        step: '03',
+        label: 'Bilingual i18n Context',
+        sub: 'EN / PT-BR Dictionary',
+        detail: 'Single-source translation store switching all UI copy, code comments, and terminal responses without page reload.',
+      },
+      {
+        id: 'theme',
+        step: '04',
+        label: 'Dynamic Theme Engine',
+        sub: 'CSS Variable Tokens',
+        detail: 'Real-time studio accent switching (--accent-hex & --accent-rgb) synchronized with the ⌘K Command Palette.',
+      },
+    ],
+    pt: [
+      {
+        id: 'react',
+        step: '01',
+        label: 'React 18 + Vite',
+        sub: 'Árvore Modular',
+        detail: 'Arquitetura SPA enxuta com HMR instantâneo, HTML5 semântico e controles acessíveis padrão WAI-ARIA.',
+      },
+      {
+        id: 'motion',
+        step: '02',
+        label: 'Framer Motion Physics',
+        sub: 'Coreografia Spring 60fps',
+        detail: 'Feixes de progresso sincronizados ao scroll, transições layoutId compartilhadas e micro-interações táteis.',
+      },
+      {
+        id: 'i18n',
+        step: '03',
+        label: 'Contexto i18n Bilíngue',
+        sub: 'Dicionário EN / PT-BR',
+        detail: 'Repositório único de traduções alternando textos, comentários de código e terminal em tempo real sem reload.',
+      },
+      {
+        id: 'theme',
+        step: '04',
+        label: 'Motor de Tema Dinâmico',
+        sub: 'Tokens CSS Variables',
+        detail: 'Troca instantânea de cor de destaque (--accent-hex & --accent-rgb) integrada à paleta de comandos ⌘K.',
+      },
+    ],
+  },
 };
 
 const ProjectInspector = ({ project, lang, accent, setAccent, themes, toggleLang }) => {
@@ -194,12 +379,12 @@ const ProjectInspector = ({ project, lang, accent, setAccent, themes, toggleLang
   const [simulating, setSimulating] = useState(false);
   const [simResult, setSimResult] = useState(null);
   const [selectedCity, setSelectedCity] = useState('Rio de Janeiro');
+  const [selectedTcModule, setSelectedTcModule] = useState('Vendas & PDV');
+  const [selectedSnapModule, setSelectedSnapModule] = useState('Step Recorder');
   const [selectedNodeIndex, setSelectedNodeIndex] = useState(0);
 
-  const isDocs = project.id === 'openweather';
-  const archNodes = isDocs
-    ? OPENWEATHER_NODES[lang] || OPENWEATHER_NODES.en
-    : PORTFOLIO_NODES[lang] || PORTFOLIO_NODES.en;
+  const projectNodeGroup = ARCH_NODES_BY_PROJECT[project.id] || ARCH_NODES_BY_PROJECT.portfolio;
+  const archNodes = projectNodeGroup[lang] || projectNodeGroup.en;
 
   const codeLines = project.codePreview.split('\n');
 
@@ -213,7 +398,27 @@ const ProjectInspector = ({ project, lang, accent, setAccent, themes, toggleLang
     setSimulating(true);
     setTimeout(() => {
       setSimulating(false);
-      if (isDocs) {
+      if (project.id === 'totalcontrol') {
+        setSimResult({
+          status: 'LIGHTHOUSE 100/100',
+          latency: '0 Broken Links • 0 Orphans',
+          schema: 'Docusaurus 3.10 + Diátaxis Verified',
+          message:
+            lang === 'pt'
+              ? 'Verificador de estilo (MS Style Guide PT-BR) e build MDX concluídos com nota 100 em Acessibilidade, Boas Práticas e SEO.'
+              : 'Style verifier (MS Style Guide PT-BR) & MDX build passed with 100/100 in Accessibility, Best Practices, and SEO.',
+        });
+      } else if (project.id === 'snapkit') {
+        setSimResult({
+          status: 'RUST NATIVE // OK',
+          latency: '~100MB RAM • 0 Telemetry',
+          schema: 'egui + ONNX PaddleOCR + FFmpeg',
+          message:
+            lang === 'pt'
+              ? 'Pipeline de captura, editor vetorial de 19 ferramentas e OCR neural 100% local executados na máquina.'
+              : 'Capture pipeline, 19-tool vector editor, and 100% local neural OCR runtime initialized on device.',
+        });
+      } else if (project.id === 'openweather') {
         setSimResult({
           status: '200 OK',
           latency: '38ms',
@@ -234,10 +439,30 @@ const ProjectInspector = ({ project, lang, accent, setAccent, themes, toggleLang
               : 'React 18 tree + Framer Motion spring physics mounted with zero layout shift.',
         });
       }
-    }, 320);
+    }, 300);
   };
 
   const activeCityData = CITY_PAYLOADS[selectedCity];
+  const activeTcData = TOTALCONTROL_MODULES[selectedTcModule];
+  const activeSnapData = SNAPKIT_MODULES[selectedSnapModule];
+
+  const windowFilename =
+    project.id === 'totalcontrol'
+      ? 'docs-totalcontrol // verificar-docs.mjs'
+      : project.id === 'snapkit'
+      ? 'snapkit // src/steps.rs (Rust)'
+      : project.id === 'openweather'
+      ? 'openweather-api-spec.http'
+      : 'PortfolioStudio.jsx';
+
+  const toolbarTag =
+    project.id === 'totalcontrol'
+      ? 'Docusaurus 3.10 // MDX & Style Linter'
+      : project.id === 'snapkit'
+      ? 'Rust // egui + ONNX OCR + Win32'
+      : project.id === 'openweather'
+      ? 'REST API // OpenAPI 3.0'
+      : 'React 18 // Framer Motion';
 
   return (
     <div className="rounded-2xl bg-[#09090E] border border-white/10 shadow-monolith overflow-hidden flex flex-col h-full">
@@ -251,7 +476,7 @@ const ProjectInspector = ({ project, lang, accent, setAccent, themes, toggleLang
           </div>
           <span className="text-[11px] font-mono text-textSecondary tracking-wider flex items-center gap-1.5">
             <Terminal className="w-3.5 h-3.5 accent-text" />
-            {isDocs ? 'openweather-api-spec.http' : 'PortfolioStudio.jsx'}
+            {windowFilename}
           </span>
         </div>
 
@@ -301,7 +526,7 @@ const ProjectInspector = ({ project, lang, accent, setAccent, themes, toggleLang
                 <div className="flex items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-mono bg-white/[0.05] text-textSecondary border border-white/[0.08]">
                     <span className="w-1.5 h-1.5 rounded-full accent-bg animate-pulse" />
-                    {isDocs ? 'REST API // OpenAPI 3.0' : 'JSX // Framer Motion'}
+                    {toolbarTag}
                   </span>
                 </div>
 
@@ -317,7 +542,15 @@ const ProjectInspector = ({ project, lang, accent, setAccent, themes, toggleLang
                       ? lang === 'pt'
                         ? 'Executando...'
                         : 'Running...'
-                      : isDocs
+                      : project.id === 'totalcontrol'
+                      ? lang === 'pt'
+                        ? 'Auditar Docs'
+                        : 'Run Audit'
+                      : project.id === 'snapkit'
+                      ? lang === 'pt'
+                        ? 'Testar Engine'
+                        : 'Run Engine'
+                      : project.id === 'openweather'
                       ? lang === 'pt'
                         ? 'Rodar Request'
                         : 'Run Request'
@@ -352,8 +585,12 @@ const ProjectInspector = ({ project, lang, accent, setAccent, themes, toggleLang
                 <table className="w-full border-collapse">
                   <tbody>
                     {codeLines.map((line, idx) => {
-                      const isComment = line.trim().startsWith('//');
-                      const isMethod = line.trim().startsWith('GET ');
+                      const isComment = line.trim().startsWith('//') || line.trim().startsWith('#');
+                      const isHighlight =
+                        line.trim().startsWith('GET ') ||
+                        line.trim().startsWith('$ ') ||
+                        line.trim().startsWith('✓') ||
+                        line.trim().startsWith('pub struct');
                       return (
                         <tr key={idx} className="hover:bg-white/[0.02]">
                           <td className="select-none pr-4 text-right text-textTertiary/50 w-7 align-top">
@@ -363,7 +600,7 @@ const ProjectInspector = ({ project, lang, accent, setAccent, themes, toggleLang
                             className={`whitespace-pre ${
                               isComment
                                 ? 'text-textTertiary italic'
-                                : isMethod
+                                : isHighlight
                                 ? 'accent-text font-semibold'
                                 : 'text-zinc-200'
                             }`}
@@ -400,20 +637,16 @@ const ProjectInspector = ({ project, lang, accent, setAccent, themes, toggleLang
                   <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-textTertiary">
                     <span className="flex items-center gap-2">
                       <Sparkles className="w-3.5 h-3.5 accent-text" />
-                      {isDocs
-                        ? lang === 'pt'
-                          ? 'Clique em "Rodar Request" ou abra a aba "2. Arquitetura" para testar cidades ao vivo.'
-                          : 'Click "Run Request" or switch to "2. Architecture" to test live city endpoints.'
-                        : lang === 'pt'
-                        ? 'Clique em "Simular Render" ou inspecione a telemetria na aba "2. Arquitetura".'
-                        : 'Click "Simulate Render" or inspect live telemetry in "2. Architecture".'}
+                      {lang === 'pt'
+                        ? 'Execute a simulação acima ou abra a aba "2. Arquitetura" para explorar os módulos.'
+                        : 'Run the simulation above or switch to "2. Architecture" to explore interactive modules.'}
                     </span>
                     <button
                       type="button"
                       onClick={() => setActiveTab('arch')}
                       className="accent-text hover:underline inline-flex items-center gap-1"
                     >
-                      {lang === 'pt' ? 'Abrir Playground' : 'Open Playground'}
+                      {lang === 'pt' ? 'Abrir Arquitetura' : 'Open Architecture'}
                       <ChevronRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -481,7 +714,101 @@ const ProjectInspector = ({ project, lang, accent, setAccent, themes, toggleLang
               </div>
 
               {/* Project-Specific Interactive Sandbox */}
-              {isDocs ? (
+              {project.id === 'totalcontrol' ? (
+                <div className="rounded-xl bg-[#050508] border border-white/[0.08] p-3.5 space-y-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-textSecondary flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5 accent-text" />
+                      {lang === 'pt'
+                        ? 'Explorador de Módulos Total ON (Diátaxis)'
+                        : 'Total ON ERP Module Explorer (Diátaxis)'}
+                    </span>
+                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      Lighthouse 100 / 100 / 100
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5">
+                    {Object.keys(TOTALCONTROL_MODULES).map((mod) => (
+                      <button
+                        key={mod}
+                        type="button"
+                        onClick={() => setSelectedTcModule(mod)}
+                        className={`px-2.5 py-1 rounded-md text-xs font-mono transition-all ${
+                          selectedTcModule === mod
+                            ? 'accent-bg text-primary font-semibold'
+                            : 'bg-white/[0.05] text-textSecondary hover:text-textPrimary border border-white/[0.07]'
+                        }`}
+                      >
+                        {mod}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="text-[11px] font-mono text-zinc-300 bg-[#0A0A10] p-3 rounded-lg border border-white/[0.06] space-y-1.5">
+                    <div className="flex items-center justify-between text-textSecondary">
+                      <span className="accent-text font-semibold">{activeTcData.path}</span>
+                      <span>{activeTcData.linter}</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-1.5 pt-1">
+                      {activeTcData.diataxis.map((file) => (
+                        <div
+                          key={file}
+                          className="px-2 py-1 rounded bg-white/[0.03] border border-white/[0.05] text-[10px] text-zinc-300 truncate"
+                        >
+                          📄 {file}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : project.id === 'snapkit' ? (
+                <div className="rounded-xl bg-[#050508] border border-white/[0.08] p-3.5 space-y-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-textSecondary flex items-center gap-1.5">
+                      <Cpu className="w-3.5 h-3.5 accent-text" />
+                      {lang === 'pt'
+                        ? 'Módulos Nativos em Rust (SnapKit)'
+                        : 'Native Rust Modules (SnapKit)'}
+                    </span>
+                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                      100% Local • MIT License
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5">
+                    {Object.keys(SNAPKIT_MODULES).map((mod) => (
+                      <button
+                        key={mod}
+                        type="button"
+                        onClick={() => setSelectedSnapModule(mod)}
+                        className={`px-2.5 py-1 rounded-md text-xs font-mono transition-all ${
+                          selectedSnapModule === mod
+                            ? 'accent-bg text-primary font-semibold'
+                            : 'bg-white/[0.05] text-textSecondary hover:text-textPrimary border border-white/[0.07]'
+                        }`}
+                      >
+                        {mod}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="text-[11px] font-mono text-zinc-300 bg-[#0A0A10] p-3 rounded-lg border border-white/[0.06] space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span className="accent-text font-semibold">{activeSnapData.file}</span>
+                      <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white text-[10px]">
+                        {activeSnapData.shortcut}
+                      </kbd>
+                    </div>
+                    <p className="text-xs text-textSecondary leading-relaxed">
+                      {lang === 'pt' ? activeSnapData.descPt : activeSnapData.descEn}
+                    </p>
+                    <div className="text-[10px] text-textTertiary pt-0.5">
+                      ⚡ {activeSnapData.stats}
+                    </div>
+                  </div>
+                </div>
+              ) : project.id === 'openweather' ? (
                 <div className="rounded-xl bg-[#050508] border border-white/[0.08] p-3.5 space-y-3">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="text-[11px] font-mono uppercase tracking-wider text-textSecondary flex items-center gap-1.5">
@@ -657,7 +984,7 @@ const Samples = () => {
                 initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.65, delay: index * 0.1 }}
+                transition={{ duration: 0.65, delay: index * 0.08 }}
                 className="monolith-card glow-border rounded-3xl p-6 sm:p-8 lg:p-10 relative overflow-hidden"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">

@@ -18,6 +18,13 @@ import { translations } from '../translations';
 const IMPACT_BRIDGES = {
   en: [
     {
+      engLabel: 'Docusaurus 3 & Style Linter Engineering',
+      engValue: 'TypeScript, MDX 3, Mermaid diagrams, custom CLI style/link verifier & Lighthouse 100 optimization',
+      dxLabel: 'Diátaxis & Enterprise Style Guide',
+      dxValue: '9 ERP retail modules structured in Diátaxis + localized Microsoft Writing Style Guide (PT-BR)',
+      synergy: 'Engineered both the Docusaurus 3.10 portal and the automated verification pipeline to ship 100%-validated ERP documentation with zero broken links.',
+    },
+    {
       engLabel: 'Full Stack Engineering',
       engValue: 'JavaScript, MongoDB, Tailwind CSS & REST API integrations on AWS',
       dxLabel: 'Docs-as-Code & DX',
@@ -40,6 +47,13 @@ const IMPACT_BRIDGES = {
     },
   ],
   pt: [
+    {
+      engLabel: 'Engenharia Docusaurus 3 & Linter',
+      engValue: 'TypeScript, MDX 3, diagramas Mermaid, verificador automático de estilo/links e nota 100 no Lighthouse',
+      dxLabel: 'Diátaxis & Guia de Estilo Corporativo',
+      dxValue: '9 módulos do ERP estruturados em Diátaxis + adaptação do Microsoft Writing Style Guide para PT-BR',
+      synergy: 'Construção do portal Docusaurus 3.10 do zero aliada a scripts de auditoria automática para publicar documentação validada no sistema sem links quebrados.',
+    },
     {
       engLabel: 'Engenharia Full Stack',
       engValue: 'JavaScript, MongoDB, Tailwind CSS & integrações de APIs REST na AWS',
@@ -68,7 +82,7 @@ const ExperienceCard = ({ item, index, impact, lang }) => {
   const [selectedTag, setSelectedTag] = useState(null);
   const [activeBridgeTab, setActiveBridgeTab] = useState('synergy'); // 'synergy' | 'eng' | 'dx'
 
-  const isCurrent = index === 0;
+  const isCurrent = index === 0 || index === 1;
   const stepNumber = String(index + 1).padStart(2, '0');
 
   return (

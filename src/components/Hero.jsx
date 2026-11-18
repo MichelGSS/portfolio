@@ -58,8 +58,8 @@ export const Hero = () => {
         type: 'output',
         text:
           lang === 'pt'
-            ? '→ Michel Silveira | Desenvolvedor Full Stack (JS/Python/MERN) & Technical Writer\n→ Base: Rio de Janeiro, BR (UTC-3) | Inglês C1 Advanced (EF SET 68/100)'
-            : '→ Michel Silveira | Full Stack Engineer (JS/Python/MERN) & Technical Writer\n→ Base: Rio de Janeiro, BR (UTC-3) | C1 Advanced English (EF SET 68/100)',
+            ? '→ Michel Silveira | Desenvolvedor Full Stack (JS/TS/Python/Rust) & Engenheiro de Documentação\n→ Total Control Technology & AWRIT | Base: Rio de Janeiro, BR (UTC-3) | Inglês C1 (EF SET)'
+            : '→ Michel Silveira | Full Stack Developer (JS/TS/Python/Rust) & Documentation Engineer\n→ Total Control Technology & AWRIT | Base: Rio de Janeiro, BR (UTC-3) | C1 English',
       },
     ]);
   }, [lang]);
@@ -121,20 +121,20 @@ export const Hero = () => {
     } else if (cmd === 'whoami' || cmd === 'whoami --verbose') {
       response =
         lang === 'pt'
-          ? '→ Michel Silveira | Full Stack Developer & Technical Writer @ AWRIT\n→ Em TI desde 2018 (Ex-Editora Globo Operação 24/7)\n→ Graduado em Sistemas para Internet (IBMR/MEC) | Inglês C1 (EF SET)'
-          : '→ Michel Silveira | Full Stack Developer & Technical Writer @ AWRIT\n→ In IT since 2018 (Prev. Editora Globo 24/7 Production Support)\n→ Degree in Internet Systems (IBMR/MEC) | English C1 Certified';
+          ? '→ Michel Silveira | Engenheiro de Documentação @ Total Control Technology & Technical Writer @ AWRIT\n→ Criador do SnapKit (Rust) | Em TI desde 2018 (Ex-Editora Globo 24/7)\n→ Graduado em Sistemas para Internet (IBMR/MEC) | Inglês C1 (EF SET)'
+          : '→ Michel Silveira | Documentation Engineer @ Total Control Technology & Technical Writer @ AWRIT\n→ Creator of SnapKit (Rust) | In IT since 2018 (Prev. Editora Globo 24/7)\n→ Degree in Internet Systems (IBMR/MEC) | English C1 Certified';
     } else if (cmd === 'stack' || cmd === 'stack --json') {
-      response = `{\n  "code": ["JavaScript", "Python", "React", "Next.js", "Node.js", "Express", "MongoDB", "SQL"],\n  "docsAsCode": ["Docusaurus", "Redocly", "OpenAPI 3.1", "Postman", "Git CI/CD"],\n  "frameworks": ["Diátaxis", "Microsoft Writing Style Guide", "WCAG/WAI-ARIA"]\n}`;
+      response = `{\n  "code": ["JavaScript", "TypeScript", "Python", "Rust", "React", "Next.js", "Node.js", "MongoDB", "SQL"],\n  "docsAsCode": ["Docusaurus 3 (MDX)", "Mermaid.js", "Redocly", "OpenAPI 3.1", "Automated Style Linters", "Git CI/CD"],\n  "frameworks": ["Diátaxis", "Microsoft Writing Style Guide", "Lighthouse 100 A11y/SEO"]\n}`;
     } else if (cmd === 'curl /api/weather' || cmd === 'weather') {
       response = `HTTP/1.1 200 OK — api.openweathermap.org/data/2.5/weather?q=Rio\n{\n  "location": "Rio de Janeiro, BR",\n  "status": "Verified via Postman & OpenAPI Spec",\n  "docs_portal": "https://michelgss.github.io/openweather-docs/"\n}`;
     } else if (cmd === 'diataxis') {
       response =
         lang === 'pt'
-          ? '[01] Tutoriais     → Onboarding prático de ponta a ponta\n[02] Guias How-To  → Receitas para problemas reais (webhooks, auth)\n[03] Referência    → Schemas OpenAPI exatos validados no código\n[04] Explicação    → Contexto arquitetural e decisões de sistema'
-          : '[01] Tutorials     → Learning-oriented onboarding lessons\n[02] How-To Guides → Task-oriented recipes (webhooks, auth, rate-limits)\n[03] Reference     → Source-verified OpenAPI 3.1 schemas & status codes\n[04] Explanation   → Deep architectural context & trade-offs';
+          ? '[01] Tutoriais     → Onboarding prático de ponta a ponta\n[02] Guias Práticos→ Receitas para tarefas reais do sistema\n[03] Referência    → Campos, parâmetros e schemas OpenAPI validados\n[04] Conceitos     → Fluxos arquiteturais e diagramas Mermaid'
+          : '[01] Tutorials     → Learning-oriented onboarding lessons\n[02] How-To Guides → Task-oriented recipes & real system workflows\n[03] Reference     → Source-verified schemas, fields & status codes\n[04] Explanation   → Deep architectural context & Mermaid flowcharts';
     } else if (cmd === 'projects') {
       response =
-        '1. OpenWeather API Docs Portal → https://michelgss.github.io/openweather-docs/\n2. Bilingual DX Studio Portfolio → React 18 + Tailwind + Framer Motion';
+        '1. Total Control Docs (Production) → https://docs.totalcontrol.com.br/\n2. SnapKit (Rust Desktop App)      → https://github.com/MichelGSS/snapkit\n3. OpenWeather API Docs Portal     → https://michelgss.github.io/openweather-docs/\n4. Bilingual DX Studio Portfolio   → https://github.com/MichelGSS/portfolio';
     } else if (cmd === 'contact' || cmd === 'resume') {
       response =
         'Email:    michelfixingit@gmail.com\nGitHub:   github.com/michelgss\nLinkedIn: linkedin.com/in/michelthedev';
@@ -328,7 +328,7 @@ export const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="flex items-center gap-4 pt-1 text-xs font-mono text-textTertiary"
+              className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-1 text-xs font-mono text-textTertiary"
             >
               <a
                 href="https://github.com/michelgss"
@@ -351,13 +351,23 @@ export const Hero = () => {
               </a>
               <span>•</span>
               <a
-                href="https://michelgss.github.io/openweather-docs/"
+                href="https://docs.totalcontrol.com.br/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:inline-flex items-center gap-1.5 hover:text-[var(--accent-hex)] transition-colors"
+                className="inline-flex items-center gap-1.5 hover:text-[var(--accent-hex)] transition-colors"
               >
                 <BookOpen className="w-3.5 h-3.5 text-[var(--accent-hex)]" />
-                <span>OpenWeather Docs</span>
+                <span>Total Control Docs</span>
+              </a>
+              <span>•</span>
+              <a
+                href="https://github.com/MichelGSS/snapkit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 hover:text-[var(--accent-hex)] transition-colors"
+              >
+                <Code2 className="w-3.5 h-3.5 text-[var(--accent-hex)]" />
+                <span>SnapKit (Rust)</span>
               </a>
             </motion.div>
           </div>
@@ -458,7 +468,7 @@ export const Hero = () => {
                     {/* Floating HUD Chips */}
                     <div className="absolute top-4 left-4 z-20 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 px-2.5 py-1 font-mono text-[10px] text-white flex items-center gap-1.5">
                       <Code2 className="w-3 h-3 text-[var(--accent-hex)]" />
-                      <span>MERN // PYTHON</span>
+                      <span>MERN // PYTHON // RUST</span>
                     </div>
 
                     <div className="absolute top-4 right-4 z-20 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 px-2.5 py-1 font-mono text-[10px] text-white flex items-center gap-1.5">
